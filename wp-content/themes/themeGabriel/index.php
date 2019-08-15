@@ -4,7 +4,29 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <p>Tema criado por Gabriel</p>
+            <?php
+            if (have_posts()) :
+                echo '<ul class="media-list">';
+                while (have_posts()) : the_post();
+                $image = sprintf('<div class="media-left>"<a href="%s">%s</a></div>',
+                get_the_permalink(),
+                get_the_post_thumbnail());
+                $body = sprintf('<div class="media-body"><h3 class="media-heading"><a href="%s">%s</a></h3><p>%s</p></div>',
+               get_the_permalink(),
+                get_the_title(),
+                get_the_content());
+               
+                printf(
+                        '<li class="media">%s%s</li>',
+                        $image,
+                        $body,
+                    );
+                endwhile;
+                echo "</ul>";
+            else :
+                echo "<p>Não temos posts</p>";
+            endif;
+            ?>
         </div>
         <div class="col-md-3">
             <?php get_sidebar(); ?>
