@@ -2,21 +2,30 @@
 <?php get_header('personalizado'); ?>
 
 <div class="container">
+<h3>Posts Recentes</h3>
     <div class="row">
         <div class="col-md-6">
             <?php
             if (have_posts()) :
                 echo '<ul class="media-list">';
                 while (have_posts()) : the_post();
-                $image = sprintf('<div class="media-left>"<a href="%s">%s</a></div>',
-                get_the_permalink(),
-                get_the_post_thumbnail());
-                $body = sprintf('<div class="media-body"><h3 class="media-heading"><a href="%s">%s</a></h3><p>%s</p></div>',
-               get_the_permalink(),
-                get_the_title(),
-                get_the_content());
-               
-                printf(
+                    $image = '';
+                    if (has_post_thumbnail()) {
+                        $image = sprintf(
+                            '<div class="media-left>"<a href="%s">%s</a></div>',
+                            get_the_permalink(),
+                            get_the_post_thumbnail()
+                        );
+                    }
+
+                    $body = sprintf(
+                        '<div class="media-body"><h3 class="media-heading"><a href="%s">%s</a></h3><p>%s</p></div>',
+                        get_the_permalink(),
+                        get_the_title(),
+                        get_the_content('Continue lendo...')
+                    );
+
+                    printf(
                         '<li class="media">%s%s</li>',
                         $image,
                         $body,
