@@ -9,3 +9,12 @@
     Tags: programação, wordpress, php, cursos
     Text Domain: Gabriel Themes
 */
+.footer{
+    height: 60px;
+    background-color: black;
+    color: white;
+}
+
+.footer .container{
+    padding-top: 10px;
+}
